@@ -1,0 +1,21 @@
+{
+  "name": "@sasuw/npm-author-packages",
+  "version": "1.0.4",
+  "description": "Lists packages for a given npm author",
+  "main": "./lib/readNpmPackageAuthors.js",
+  "bin": {
+      "npm-author-packages": "./bin/index.js"
+  },
+  "author": "Sasu Welling",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1"
+  },
+  "keywords": [
+    "npm",
+    "author",
+    "user",
+    "packages",
+    "utility"
+  ]
+}
