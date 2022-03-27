@@ -4,12 +4,16 @@
   "description": "Lists packages for a given npm author",
   "main": "./lib/readNpmPackageAuthors.js",
   "bin": {
-      "npm-author-packages": "./bin/index.js"
+    "npm-author-packages": "./bin/index.js"
   },
   "author": "Sasu Welling",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.26.1"
+    "axios": "0.26.1",
+    "chalk": "4.1.2",
+    "command-line-args": "5.2.1",
+    "command-line-usage": "6.1.1",
+    "depcheck": "1.4.3"
   },
   "keywords": [
     "npm",
