@@ -15,7 +15,7 @@ async function fetchAuthorPackages(npmUser) {
     return readNpmPackageAuthors.readNpmPackageAuthors(npmUser);
 }
 
-function printAuthorPackages(authorPackages) {
+function printAuthorPackages(authorPackages, quietOptionEnabled) {
     if (authorPackages.length === 0) {  
         printToConsole('No packages found.');
     } else {
@@ -23,8 +23,10 @@ function printAuthorPackages(authorPackages) {
         if (authorPackages.length === 1) {
             packageNoun = 'package';
         }
-        let foundStr = authorPackages.length + ' ' + packageNoun + ' found';
-        printToConsole(chalk.underline(foundStr));
+        if(!quietOptionEnabled){
+            let foundStr = authorPackages.length + ' ' + packageNoun + ' found';
+            printToConsole(chalk.underline(foundStr));
+        }
     }  
 
     authorPackages.forEach(element => {
@@ -47,7 +49,7 @@ function isEmpty(obj) {
 
     const options = commandLineArgs(optionDefinitions);
 
-    console.log(options);
+    //console.log(options);
 
     if (ObjectUtils.isEmpty(options) || options.help !== undefined) {
         const sections = [
@@ -99,11 +101,16 @@ function isEmpty(obj) {
         process.exit(3);
     }
 
-    let t1 = process.hrtime.bigint();
+    let quietOptionEnabled = (options.quiet !== undefined);
+    if(!quietOptionEnabled){
+        var t1 = process.hrtime.bigint();
+    }
     let authorPackages = await fetchAuthorPackages(options.author);
-    let t2 = process.hrtime.bigint();
-    let elapsedTimeNs = t2 - t1;
-    let elapsedTime = (elapsedTimeNs.toString().slice(0, -6) + ' ms');
-    printToConsole('Executing npm-author-packages took ' + elapsedTime + '\n');
-    printAuthorPackages(authorPackages);
+    if(!quietOptionEnabled){
+        let t2 = process.hrtime.bigint();
+        let elapsedTimeNs = t2 - t1;
+        let elapsedTime = (elapsedTimeNs.toString().slice(0, -6) + ' ms');
+        printToConsole('Executing npm-author-packages took ' + elapsedTime + '\n');
+    }
+    printAuthorPackages(authorPackages, quietOptionEnabled);
 })();
