@@ -144,18 +144,18 @@ function displayHelp() {
                 },
                 {
                     name: 'ishere',
-                    alias: 'ih',
+                    alias: 'i',
                     description: 'TBD: Checks if the given author is the author of any dependency in the current project (as determined by the package.json file in the current directory). Requires --author option to be supplied.'
                 },
                 {
                     name: 'authorlist',
-                    alias: 'al',
+                    alias: 'l',
                     typeLabel: '{underline url or file}',
                     description: 'TBD: URL or file path of a text file containing the npm usernames of authors whose package involvement you want to check'
                 },
                 {
                     name: 'default-blocklist',
-                    alias: 'dbl',
+                    alias: 'd',
                     description: 'TBD: When enabled, checks if the current project (as determined by the package.json file in the current directory) has any dependencies where a known malware author has been involved.'
                 },
                 {
