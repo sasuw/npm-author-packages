@@ -17,7 +17,15 @@ async function fetchAuthorPackages(npmUser) {
 }
 
 function printAuthorPackageInvolvement(npmUser, npmPackage){
-    printToConsole('Not implemented yet.');
+    printToConsole('Option --package has not been implemented yet.');
+}
+
+function printAuthorListPackageInvolvement(authorList){
+    printToConsole('Option --authorlist has not been implemented yet.');
+}
+
+function printDefaultBlockListPackageInvolvement(authorList){
+    printToConsole('Option --default-blocklist has not been implemented yet.');
 }
 
 function printAuthorPackages(authorPackages, quietOptionEnabled) {
@@ -44,6 +52,9 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
         { name: 'quiet', alias: 'q', type: Boolean },
         { name: 'author', alias: 'a', type: String, multiple: false, defaultOption: true },
         { name: 'package', alias: 'p', type: String },
+        { name: 'ishere', alias: 'i', type: Boolean},
+        { name: 'authorlist', alias: 'l', type: String},
+        { name: 'default-blocklist', alias: 'd', type: Boolean},
         { name: 'help', alias: 'h', type: Boolean },
         { name: 'version', alias: 'v', type: Boolean }
     ]
@@ -62,9 +73,24 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
         process.exit(0);
     }
 
+    if (options.ishere != null && options.author == null) {
+        printToConsole('Option --ishere (-i) requires that you also supply the npm author with the --author (-a) option. For more information, run this command with --help.');
+        process.exit(4);
+    }
+
     if (options.package != null && options.author == null) {
         printToConsole('Option --package (-p) requires that you also supply the npm author with the --author (-a) option. For more information, run this command with --help.');
         process.exit(4);
+    }
+
+    if (options.authorlist != null){
+        printAuthorListPackageInvolvement(options.authorList);
+        process.exit(0);
+    }
+
+    if (options['default-blocklist'] != null){
+        printDefaultBlockListPackageInvolvement();
+        process.exit(0);
     }
 
     //process.exit(0);
@@ -115,6 +141,22 @@ function displayHelp() {
                     alias: 'p',
                     typeLabel: '{underline npm-package-name}',
                     description: 'TBD: Name of npm package, for which you want to find out whether the given npm-author has been involved in. Requires --author option to be supplied.'
+                },
+                {
+                    name: 'ishere',
+                    alias: 'ih',
+                    description: 'TBD: Checks if the given author is the author of any dependency in the current project (as determined by the package.json file in the current directory). Requires --author option to be supplied.'
+                },
+                {
+                    name: 'authorlist',
+                    alias: 'al',
+                    typeLabel: '{underline url or file}',
+                    description: 'TBD: URL or file path of a text file containing the npm usernames of authors whose package involvement you want to check'
+                },
+                {
+                    name: 'default-blocklist',
+                    alias: 'dbl',
+                    description: 'TBD: When enabled, checks if the current project (as determined by the package.json file in the current directory) has any dependencies where a known malware author has been involved.'
                 },
                 {
                     name: 'help',
