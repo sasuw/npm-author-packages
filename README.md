@@ -12,6 +12,14 @@ Then you can list npm packages for a specific author by running
 
     npm-author-packages [username]
 
+To find out if any dependency (or sub-dependency) in your npm project involves a specicic author, run this in your project directory
+
+    npm-author-packages -a [username] -i
+
+To find out if a specicic author is a (co)author, execute
+
+    npm-author-packages -a [username] -p [package name]
+
 ## Local
 
 To use this package in your own project
