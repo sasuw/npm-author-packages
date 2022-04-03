@@ -16,8 +16,20 @@ async function fetchAuthorPackages(npmUser) {
     return readNpmPackageAuthors.readNpmPackageAuthors(npmUser);
 }
 
-function printAuthorPackageInvolvement(npmUser, npmPackage){
-    printToConsole('Option --package has not been implemented yet.');
+async function printAuthorPackageInvolvement(npmUser, npmPackage, quietOptionEnabled){
+    let authorPackages = await readNpmPackageAuthors.readNpmPackageAuthors(npmUser);
+    let authorFound = authorPackages.includes(npmPackage.trim()) ||
+        authorPackages.includes('@' + npmUser + '/' + npmPackage.trim());
+    if(quietOptionEnabled){
+        printToConsole(authorFound);
+        process.exit(0);
+    }
+    if(authorFound){
+        printToConsole(npmUser + ' is a (co)author of package ' + npmPackage);
+    }else{
+        printToConsole(npmUser + ' is not a (co)author of package ' + npmPackage);
+    }
+    process.exit(0);
 }
 
 function printAuthorListPackageInvolvement(authorList){
@@ -100,7 +112,7 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
     }
 
     if (options.package != null && options.author != null) {
-        printAuthorPackageInvolvement(options.author, options.package);
+        printAuthorPackageInvolvement(options.author, options.package, options.quiet);
     }else{
         if (!options.quiet) {
             var t1 = process.hrtime.bigint();
