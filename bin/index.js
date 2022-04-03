@@ -152,7 +152,7 @@ function displayHelp() {
                     name: 'package',
                     alias: 'p',
                     typeLabel: '{underline npm-package-name}',
-                    description: 'TBD: Name of npm package, for which you want to find out whether the given npm-author has been involved in. Requires --author option to be supplied.'
+                    description: 'Name of npm package, for which you want to find out whether the given npm-author has been involved in. Requires --author option to be supplied.'
                 },
                 {
                     name: 'ishere',
