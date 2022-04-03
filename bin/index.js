@@ -2,11 +2,11 @@
 
 const readNpmPackageAuthors = require('../lib/readNpmPackageAuthors.js');
 const ObjectUtils = require('../lib/objectUtils');
-const { spawn } = require('child_process');
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
 const chalk = require('chalk');
 const getPackageVersion = require('../lib/version');
+const NpmDependencyChecker = require('../lib/npmDependencyChecker.js');
 
 function printToConsole(msg) {
     process.stdout.write(msg + '\n');
@@ -38,6 +38,30 @@ function printAuthorListPackageInvolvement(authorList){
 
 function printDefaultBlockListPackageInvolvement(authorList){
     printToConsole('Option --default-blocklist has not been implemented yet.');
+}
+
+async function printAuthorInvolvementInCurrentPackage(author, quietOptionEnabled){
+    //xxx
+    let nodeModules = await NpmDependencyChecker.readDependencies();
+    let authorPackages = await readNpmPackageAuthors.readNpmPackageAuthors(author);
+
+    const commonPackages = nodeModules.filter(value => authorPackages.includes(value));
+
+    if(quietOptionEnabled){
+        printToConsole(commonPackages.length > 0);
+        process.exit(0);
+    }
+
+    if(commonPackages.length === 0){
+        printToConsole(author + ' is not an (co)author of any of the ' + nodeModules.length + ' packages used by the current project');
+        process.exit(0);
+    }
+    printToConsole(author + ' is an (co)author of ' + commonPackages.length + ' packages (of ' + nodeModules.length + ') used by the current project');
+    for(let i = 0; i < commonPackages.length; i++){
+        printToConsole(commonPackages[i]);
+    }
+   
+    process.exit(0);
 }
 
 function printAuthorPackages(authorPackages, quietOptionEnabled) {
@@ -114,6 +138,10 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
     if (options.package != null && options.author != null) {
         printAuthorPackageInvolvement(options.author, options.package, options.quiet);
     }else{
+        if (options.ishere && options.author != null) {
+            await printAuthorInvolvementInCurrentPackage(options.author, options.quiet);
+        }
+
         if (!options.quiet) {
             var t1 = process.hrtime.bigint();
         }
@@ -157,8 +185,9 @@ function displayHelp() {
                 {
                     name: 'ishere',
                     alias: 'i',
-                    description: 'TBD: Checks if the given author is the author of any dependency in the current project (as determined by the package.json file in the current directory). Requires --author option to be supplied.'
+                    description: 'Checks if the given author is the author of any dependency in the current project (as determined by the package.json file in the current directory). Requires --author option to be supplied.'
                 },
+                /*
                 {
                     name: 'authorlist',
                     alias: 'l',
@@ -170,6 +199,7 @@ function displayHelp() {
                     alias: 'd',
                     description: 'TBD: When enabled, checks if the current project (as determined by the package.json file in the current directory) has any dependencies where a known malware author has been involved.'
                 },
+                */
                 {
                     name: 'help',
                     alias: 'h',
