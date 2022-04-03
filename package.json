@@ -1,6 +1,6 @@
 {
   "name": "@sasuw/npm-author-packages",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lists packages for a given npm author",
   "main": "./lib/readNpmPackageAuthors.js",
   "bin": {
@@ -12,8 +12,7 @@
     "axios": "0.26.1",
     "chalk": "4.1.2",
     "command-line-args": "5.2.1",
-    "command-line-usage": "6.1.1",
-    "depcheck": "1.4.3"
+    "command-line-usage": "6.1.1"
   },
   "keywords": [
     "npm",
