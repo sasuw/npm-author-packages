@@ -97,7 +97,7 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
 
     const options = commandLineArgs(optionDefinitions);
 
-    console.log(options);
+    //console.log(options);
 
     if (ObjectUtils.isEmpty(options) || options.help) {
         displayHelp();

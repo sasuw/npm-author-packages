@@ -1,6 +1,6 @@
 {
   "name": "@sasuw/npm-author-packages",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tools for listing author packages and finds author–package relationships",
   "main": "./lib/readNpmPackageAuthors.js",
   "bin": {
