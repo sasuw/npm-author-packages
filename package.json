@@ -1,10 +1,14 @@
 {
   "name": "@sasuw/npm-author-packages",
-  "version": "1.0.6",
-  "description": "Lists packages for a given npm author",
+  "version": "1.0.7",
+  "description": "Tools for listing author packages and finds author–package relationships",
   "main": "./lib/readNpmPackageAuthors.js",
   "bin": {
     "npm-author-packages": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sasuw/npm-author-packages"
   },
   "author": "Sasu Welling",
   "license": "ISC",
