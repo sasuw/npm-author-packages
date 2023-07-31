@@ -21,19 +21,19 @@ To use this package anywhere from the terminal, install it globally
 
 Then you can list npm packages for a specific author by running
 
-    npm-author-packages [username]
+    npmap [username]
 
 To find out if any dependency (or sub-dependency) in your npm project involves a specicic author, run this in your project directory
 
-    npm-author-packages -a [username] -i
+    npmap -a [username] -i
 
 To find out if a specicic author is a (co)author of a specific package, execute
 
-    npm-author-packages -a [username] -p [package name]
+    npmap -a [username] -p [package name]
 
 For all options, run
 
-    npm-author-packages -h
+    npmap -h
 
 ## In code
 

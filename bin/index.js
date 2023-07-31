@@ -41,7 +41,6 @@ function printDefaultBlockListPackageInvolvement(authorList){
 }
 
 async function printAuthorInvolvementInCurrentPackage(author, quietOptionEnabled){
-    //xxx
     let nodeModules = await NpmDependencyChecker.readDependencies();
     let authorPackages = await readNpmPackageAuthors.readNpmPackageAuthors(author);
 
