@@ -104,7 +104,7 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
     }
 
     if (options.version) {
-        printToConsole('npm-package-authors v. ' + getPackageVersion());
+        printToConsole('npm-author-packages (npmap) v. ' + getPackageVersion());
         process.exit(0);
     }
 
