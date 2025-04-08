@@ -23,11 +23,11 @@ Then you can list npm packages for a specific author by running
 
     npmap [username]
 
-To find out if any dependency (or sub-dependency) in your npm project involves a specicic author, run this in your project directory
+To find out if any dependency (or sub-dependency) in your npm project involves a specific author, run this in your project directory
 
     npmap -a [username] -i
 
-To find out if a specicic author is a (co)author of a specific package, execute
+To find out if a specific author is a (co)author of a specific package, execute
 
     npmap -a [username] -p [package name]
 

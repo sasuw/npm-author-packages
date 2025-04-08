@@ -1,10 +1,11 @@
 {
   "name": "@sasuw/npm-author-packages",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Tools for listing author packages and finds author–package relationships",
   "main": "./lib/readNpmPackageAuthors.js",
   "bin": {
-    "npmap": "./bin/index.js"
+    "npmap": "./bin/index.js",
+    "npm-author-packages": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,7 @@
   "author": "Sasu Welling",
   "license": "ISC",
   "dependencies": {
-    "axios": "1.4.0",
+    "axios": "^1.8.4",
     "chalk": "4.1.2",
     "command-line-args": "5.2.1",
     "command-line-usage": "7.0.1"

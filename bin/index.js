@@ -158,7 +158,7 @@ function printAuthorPackages(authorPackages, quietOptionEnabled) {
 function displayHelp() {
     const sections = [
         {
-            header: 'npm-author-packages',
+            header: 'npm-author-packages (npmap)',
             content: 'outputs npm author package relations'
         },
         {
